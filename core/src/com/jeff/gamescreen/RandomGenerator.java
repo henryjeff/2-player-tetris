@@ -40,7 +40,7 @@ public class RandomGenerator {
 		Random r = new Random();
 		int index = r.nextInt(bag.size());
 		char piece = bag.get(index);
-		Tetromino rPiece = new Tetromino(playfield, player.tileType, player.spawnOffset, piece);
+		Tetromino rPiece = new Tetromino(playfield, player.tileType, player.spawnOffset, 0, piece);
 		
 		bag.remove(index);
 		

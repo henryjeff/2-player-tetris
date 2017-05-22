@@ -1,11 +1,11 @@
 package com.jeff.gamescreen;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.jeff.game.Game;
 
 public class Square {
-
-	public static final int SIZE_CLIP = 32;
 
 	private int x, y;
 	private TileType type;
@@ -62,14 +62,14 @@ public class Square {
 		return type;
 	}
 
-	public void draw(SpriteBatch batch, Playfield playfield) {
-		int playfieldWidth = playfield.getWidth() * SIZE_CLIP;
-		int playfieldHeight = playfield.getHeight() * SIZE_CLIP;
-		int xOffset = playfield.getXOffset() - playfieldWidth / 2;
-		int yOffset = playfield.getYOffset() - playfieldHeight / 2;
-		batch.draw(texture,  xOffset + x * SIZE_CLIP, yOffset + y * SIZE_CLIP, SIZE_CLIP, SIZE_CLIP);
+	public void draw(SpriteBatch batch, Queuefield queuefield) {
+		batch.draw(texture, (queuefield.getXParallaxOffset() + x * Game.SIZE_CLIP) - (queuefield.getXOffset() * 2) , (queuefield.getYParallaxOffset() + y * Game.SIZE_CLIP) - (queuefield.getYOffset() * 2), 0, 0, texture.getWidth(), texture.getHeight(), 2, 2, 0, 0, 0, texture.getWidth(), texture.getHeight(),  false, true);
 	}
 
+	public void draw(SpriteBatch batch, Playfield playfield) {
+		batch.draw(texture, (playfield.getXParallaxOffset() + x * Game.SIZE_CLIP) - (playfield.getXOffset() * 2), (playfield.getYParallaxOffset() + y * Game.SIZE_CLIP) - (playfield.getYOffset() * 2), 0, 0, texture.getWidth(), texture.getHeight(), 2, 2, 0, 0, 0, texture.getWidth(), texture.getHeight(),  false, true);
+	}
+	
 	public boolean isEmpty() {
 		return isEmpty;
 	}

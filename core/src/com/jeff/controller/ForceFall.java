@@ -1,6 +1,7 @@
 package com.jeff.controller;
 
 import com.badlogic.gdx.Input;
+import com.jeff.game.Game;
 import com.jeff.gamescreen.Playfield;
 import com.jeff.gamescreen.Tetromino;
 import com.jeff.player.Player;
@@ -10,9 +11,9 @@ public class ForceFall implements Action {
 
 	MoveSystem moveSystem;
 	Playfield playfield;
-	int autoFallTimer;
-	int fallTimer;
-	int fallSpeed;
+	float autoFallTimer;
+	float fallTimer;
+	float fallSpeed;
 
 	public ForceFall(MoveSystem moveSystem, Playfield playfield) {
 		this.moveSystem = moveSystem;
@@ -23,7 +24,7 @@ public class ForceFall implements Action {
 
 	@Override
 	public int update(Player player) {
-		fallSpeed = player.getForceFallSpeed();
+		fallSpeed = player.forceFallSpeed;
 		return 0;
 	}
 
@@ -33,15 +34,15 @@ public class ForceFall implements Action {
 			return;
 		}
 		if(input.isKeyPressed(key)){
-			if (autoFallTimer >= 5) {
+			if (autoFallTimer >= 0.25f) {
 				if(fallTimer >= fallSpeed){
 					fallTimer = 0;
 					tetromino.safeFall();	
 				}else{
-					fallTimer++;
+					fallTimer += Game.delta;
 				}
 			} else {
-				autoFallTimer++;
+				autoFallTimer += Game.delta;
 			}
 		} else {
 			autoFallTimer = 0;

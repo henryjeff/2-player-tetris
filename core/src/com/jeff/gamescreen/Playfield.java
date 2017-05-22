@@ -7,32 +7,41 @@ import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.jeff.game.Game;
 import com.jeff.player.Player;
 
 public class Playfield {
-	private int height, width;
+	private int height;
+	private int width;
 	private Square[][] squares;
 
 	private ConcurrentHashMap<Player, Tetromino> tetrominoMap;
 	private List<Player> players;
 	private RandomGenerator randomGenerator;
 
+	private Texture borderTexture;
+	private float parallaxWeight;
+	private int xParallaxOffset;
+	private int yParallaxOffset;
 	private int xOffset;
 	private int yOffset;
+	private int x;
+	private int y;
 
-	private int offsetTimer;
-	private int delta;
-
-	public Playfield(int height, int width) {
+	public Playfield(int height, int width, float parallaxWeight) {
+		this.borderTexture = new Texture(Gdx.files.internal("textures/playfield_border.png"));
 		this.height = height;
 		this.width = width;
+		this.parallaxWeight = parallaxWeight;
 		this.squares = new Square[width][height];
 		randomGenerator = new RandomGenerator();
-		offsetTimer = 0;
-		delta = 0;
-		xOffset = Gdx.graphics.getWidth() / 2;
-		yOffset = Gdx.graphics.getHeight() / 2;
+		x = Gdx.graphics.getWidth() / 2;
+		y = Gdx.graphics.getHeight() / 2;
+		xOffset = 0;
+		yOffset = 0;
 		players = new ArrayList<Player>();
 		tetrominoMap = new ConcurrentHashMap<Player, Tetromino>();
 		for (int y = 0; y < this.height; y++) {
@@ -46,6 +55,14 @@ public class Playfield {
 		}
 	}
 
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
 	public int getXOffset() {
 		return xOffset;
 	}
@@ -53,27 +70,39 @@ public class Playfield {
 	public int getYOffset() {
 		return yOffset;
 	}
-
-	public void setXOffset(int xOffset) {
-		this.xOffset = xOffset;
+	
+	public int getXParallaxOffset() {
+		return xParallaxOffset;
 	}
 
-	public void setYOffset(int yOffset) {
-		this.yOffset = yOffset;
+	public int getYParallaxOffset() {
+		return yParallaxOffset;
 	}
-
+	
+	public float getParallaxWeight(){
+		return parallaxWeight;
+	}
+	
 	public void addPlayer(Player player) {
 		players.add(player);
+		player.playfield = this;
 	}
 
-	public void update() {
+	public void update(float delta) {
+		int queuefieldWidth = width * Game.SIZE_CLIP;
+		int queuefieldHeight = height * Game.SIZE_CLIP;
+		int parallaxOffsetX = (int) ((Game.camera.position.x - (Gdx.graphics.getWidth() / 2)) * parallaxWeight);
+		int parallaxOffsetY = (int) ((Game.camera.position.y - (Gdx.graphics.getHeight() / 2)) * parallaxWeight);
+		xParallaxOffset = x - queuefieldWidth / 2 + parallaxOffsetX;
+		yParallaxOffset = y - queuefieldHeight / 2 + parallaxOffsetY;
 		for (Player player : players) {
 			if (player.nextTetromino == null) {
-				player.nextTetromino = randomGenerator.nextPiece(this, player);
+				player.nextTetromino = new Tetromino(randomGenerator.nextPiece(this, player));
 			}
 			if (player.tetromino == null) {
-				player.tetromino = player.nextTetromino;
-				player.nextTetromino = randomGenerator.nextPiece(this, player);
+				player.nextTetromino.setXSpawnOffset(player.spawnOffset); 
+				player.tetromino = new Tetromino(player.nextTetromino.playfield, player.nextTetromino.tileType, player.spawnOffset, 0, player.nextTetromino.type);
+				player.nextTetromino =  new Tetromino(randomGenerator.nextPiece(this, player));
 				removeTetromino(player);
 				addTetromino(player, player.tetromino);
 			}
@@ -86,12 +115,12 @@ public class Playfield {
 					player.fallTimer = 0;
 				} else {
 					tetromino.up();
-					player.fallTimer++;
+					player.fallTimer += delta;
 				}
 				player.placeTimer = 0;
 			} else {
 				if (!tetromino.isColliding(this)) {
-					player.placeTimer++;
+					player.placeTimer += delta;
 				}
 			}
 			if (player.placeTimer >= player.placeSpeed) {
@@ -105,13 +134,6 @@ public class Playfield {
 				player.placeTimer = 0;
 			}
 		}
-		// if(offsetTimer > 4){
-		// int offset = (int) (Math.sin(delta) * 5);
-		// this.setYOffset(yOffset += offset);
-		// delta++;
-		// offsetTimer = 0;
-		// }
-		// offsetTimer++;
 	}
 
 	public void draw(SpriteBatch batch) {
@@ -123,6 +145,14 @@ public class Playfield {
 		for (Tetromino tetromino : tetrominoMap.values()) {
 			tetromino.draw(batch, this);
 		}
+		for (Player player : players){
+			player.draw(batch);
+		}
+		int parallaxOffsetX = (int) ((Game.camera.position.x - (Gdx.graphics.getWidth() / 2)) * parallaxWeight);
+		int parallaxOffsetY = (int) ((Game.camera.position.y - (Gdx.graphics.getHeight() / 2)) * parallaxWeight);
+		TextureRegion borderRegion = new TextureRegion(borderTexture);
+		borderRegion.flip(false, true);
+		batch.draw(borderRegion, parallaxOffsetX + (x - (borderRegion.getRegionWidth())),parallaxOffsetY + y / 2 - 134 - (yOffset * 2), 0, 0, borderRegion.getRegionWidth(),borderRegion.getRegionHeight(), 2, 2, 0);
 	}
 
 	public void setTetromino(Tetromino tetromino) {

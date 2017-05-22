@@ -1,7 +1,4 @@
-package collision;
-
-import com.jeff.gamescreen.Playfield;
-import com.jeff.gamescreen.Tetromino;
+package com.jeff.gamescreen;
 
 public class BoundingSquare {
 

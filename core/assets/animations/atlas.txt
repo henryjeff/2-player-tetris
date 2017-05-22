@@ -1,0 +1,243 @@
+atlas.png
+size: 484, 646
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+blue/queuefield_blue
+  rotate: false
+  xy: 0, 0
+  size: 121, 210
+  orig: 121, 210
+  offset: 0, 0
+  index: 1
+blue/queuefield_blue
+  rotate: false
+  xy: 121, 0
+  size: 121, 210
+  orig: 121, 210
+  offset: 0, 0
+  index: 2
+blue/queuefield_blue
+  rotate: false
+  xy: 242, 0
+  size: 121, 210
+  orig: 121, 210
+  offset: 0, 0
+  index: 3
+blue/queuefield_blue
+  rotate: false
+  xy: 363, 0
+  size: 121, 210
+  orig: 121, 210
+  offset: 0, 0
+  index: 4
+blue/queuefield_blue
+  rotate: false
+  xy: 0, 210
+  size: 121, 210
+  orig: 121, 210
+  offset: 0, 0
+  index: 5
+blue/queuefield_blue
+  rotate: false
+  xy: 121, 210
+  size: 121, 210
+  orig: 121, 210
+  offset: 0, 0
+  index: 6
+red/queuefield_red
+  rotate: false
+  xy: 242, 210
+  size: 121, 210
+  orig: 121, 210
+  offset: 0, 0
+  index: 1
+red/queuefield_red
+  rotate: false
+  xy: 363, 210
+  size: 121, 210
+  orig: 121, 210
+  offset: 0, 0
+  index: 2
+red/queuefield_red
+  rotate: false
+  xy: 0, 420
+  size: 121, 210
+  orig: 121, 210
+  offset: 0, 0
+  index: 3
+red/queuefield_red
+  rotate: false
+  xy: 121, 420
+  size: 121, 210
+  orig: 121, 210
+  offset: 0, 0
+  index: 4
+red/queuefield_red
+  rotate: false
+  xy: 242, 420
+  size: 121, 210
+  orig: 121, 210
+  offset: 0, 0
+  index: 5
+red/queuefield_red
+  rotate: false
+  xy: 363, 420
+  size: 121, 210
+  orig: 121, 210
+  offset: 0, 0
+  index: 6
+shine/blue/tile_shine_blue
+  rotate: false
+  xy: 0, 630
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 1
+shine/blue/tile_shine_blue
+  rotate: false
+  xy: 16, 630
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 2
+shine/blue/tile_shine_blue
+  rotate: false
+  xy: 32, 630
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 3
+shine/blue/tile_shine_blue
+  rotate: false
+  xy: 48, 630
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 4
+shine/blue/tile_shine_blue
+  rotate: false
+  xy: 64, 630
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 5
+shine/blue/tile_shine_blue
+  rotate: false
+  xy: 80, 630
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 6
+shine/blue/tile_shine_blue
+  rotate: false
+  xy: 96, 630
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 7
+shine/blue/tile_shine_blue
+  rotate: false
+  xy: 112, 630
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 8
+shine/blue/tile_shine_blue
+  rotate: false
+  xy: 128, 630
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 9
+shine/blue/tile_shine_blue
+  rotate: false
+  xy: 144, 630
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 10
+shine/blue/tile_shine_blue
+  rotate: false
+  xy: 160, 630
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 11
+shine/red/tile_shine_red
+  rotate: false
+  xy: 176, 630
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 1
+shine/red/tile_shine_red
+  rotate: false
+  xy: 192, 630
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 2
+shine/red/tile_shine_red
+  rotate: false
+  xy: 208, 630
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 3
+shine/red/tile_shine_red
+  rotate: false
+  xy: 224, 630
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 4
+shine/red/tile_shine_red
+  rotate: false
+  xy: 240, 630
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 5
+shine/red/tile_shine_red
+  rotate: false
+  xy: 256, 630
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 6
+shine/red/tile_shine_red
+  rotate: false
+  xy: 272, 630
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 7
+shine/red/tile_shine_red
+  rotate: false
+  xy: 288, 630
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 8
+shine/red/tile_shine_red
+  rotate: false
+  xy: 304, 630
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 9
+shine/red/tile_shine_red
+  rotate: false
+  xy: 320, 630
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 10
+shine/red/tile_shine_red
+  rotate: false
+  xy: 336, 630
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 11

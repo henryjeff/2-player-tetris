@@ -1,10 +1,6 @@
 package com.jeff.gamescreen;
 
-import java.util.Random;
-
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-
-import collision.BoundingSquare;
 
 public class Tetromino {
 
@@ -17,82 +13,81 @@ public class Tetromino {
 	public static final int POSITION_RIGHT = 1;
 	public static final int POSITION_BOTTOM = 2;
 	public static final int POSITION_LEFT = 3;
-
+	
 	public Square[] squares;
+	public TileType tileType;
 	public char type;
-	public boolean isPowered;
 	public int position;
-
+	public int xSpawnOffset;
+	public int ySpawnOffset;
+	
 	public BoundingSquare boundingSquare;
 
 	public Playfield playfield;
 
-	public Tetromino(Playfield playfield, TileType tileType, int xSpawnOffset, char type) {
-		Random r = new Random();
+	public Tetromino(Playfield playfield, TileType tileType, int xSpawnOffset, int ySpawnOffset, char type) {
 		this.playfield = playfield;
-		if (r.nextInt(50) > 45) {
-			this.isPowered = true;
-		} else {
-			this.isPowered = false;
-		}
 		this.type = type;
-
+		this.tileType = tileType;
+		this.xSpawnOffset = xSpawnOffset;
+		this.ySpawnOffset = ySpawnOffset;
 		squares = new Square[4];
 		switch (this.type) {
 		case 'O':
-			// O
-			squares[0] = new Square(5 + xSpawnOffset, 0, tileType, false);
-			squares[1] = new Square(5 + xSpawnOffset, 1, tileType, false);
-			squares[2] = new Square(6 + xSpawnOffset, 0, tileType, false);
-			squares[3] = new Square(6 + xSpawnOffset, 1, tileType, false);
+			squares[0] = new Square(2 + xSpawnOffset, 0 + ySpawnOffset, tileType, false);
+			squares[1] = new Square(2 + xSpawnOffset, 1 + ySpawnOffset, tileType, false);
+			squares[2] = new Square(3 + xSpawnOffset, 0 + ySpawnOffset, tileType, false);
+			squares[3] = new Square(3 + xSpawnOffset, 1 + ySpawnOffset, tileType, false);
 			break;
 		case 'T':
-			// T
-			squares[0] = new Square(4 + xSpawnOffset, 1, tileType, false);
-			squares[1] = new Square(5 + xSpawnOffset, 1, tileType, false);
-			squares[2] = new Square(6 + xSpawnOffset, 1, tileType, false);
-			squares[3] = new Square(5 + xSpawnOffset, 0, tileType, false);
+			squares[0] = new Square(1 + xSpawnOffset, 1 + ySpawnOffset, tileType, false);
+			squares[1] = new Square(2 + xSpawnOffset, 1 + ySpawnOffset, tileType, false);
+			squares[2] = new Square(3 + xSpawnOffset, 1 + ySpawnOffset, tileType, false);
+			squares[3] = new Square(2 + xSpawnOffset, 0 + ySpawnOffset, tileType, false);
 			break;
 		case 'I':
-			// I
-			squares[0] = new Square(4 + xSpawnOffset, 0, tileType, false);
-			squares[1] = new Square(5 + xSpawnOffset, 0, tileType, false);
-			squares[2] = new Square(6 + xSpawnOffset, 0, tileType, false);
-			squares[3] = new Square(7 + xSpawnOffset, 0, tileType, false);
+			squares[0] = new Square(1 + xSpawnOffset, 0 + ySpawnOffset, tileType, false);
+			squares[1] = new Square(2 + xSpawnOffset, 0 + ySpawnOffset, tileType, false);
+			squares[2] = new Square(3 + xSpawnOffset, 0 + ySpawnOffset, tileType, false);
+			squares[3] = new Square(4 + xSpawnOffset, 0 + ySpawnOffset, tileType, false);
 			break;
 		case 'L':
-			// L
-			squares[0] = new Square(4 + xSpawnOffset, 1, tileType, false);
-			squares[1] = new Square(5 + xSpawnOffset, 1, tileType, false);
-			squares[2] = new Square(6 + xSpawnOffset, 1, tileType, false);
-			squares[3] = new Square(6 + xSpawnOffset, 0, tileType, false);
+			squares[0] = new Square(1 + xSpawnOffset, 1 + ySpawnOffset, tileType, false);
+			squares[1] = new Square(2 + xSpawnOffset, 1 + ySpawnOffset, tileType, false);
+			squares[2] = new Square(3 + xSpawnOffset, 1 + ySpawnOffset, tileType, false);
+			squares[3] = new Square(3 + xSpawnOffset, 0 + ySpawnOffset, tileType, false);
 			break;
 		case 'J':
-			// J
-			squares[0] = new Square(4 + xSpawnOffset, 1, tileType, false);
-			squares[1] = new Square(5 + xSpawnOffset, 1, tileType, false);
-			squares[2] = new Square(6 + xSpawnOffset, 1, tileType, false);
-			squares[3] = new Square(4 + xSpawnOffset, 0, tileType, false);
+			squares[0] = new Square(1 + xSpawnOffset, 1 + ySpawnOffset, tileType, false);
+			squares[1] = new Square(2 + xSpawnOffset, 1 + ySpawnOffset, tileType, false);
+			squares[2] = new Square(3 + xSpawnOffset, 1 + ySpawnOffset, tileType, false);
+			squares[3] = new Square(1 + xSpawnOffset, 0 + ySpawnOffset, tileType, false);
 			break;
 		case 'Z':
-			// Z
-			squares[0] = new Square(4 + xSpawnOffset, 0, tileType, false);
-			squares[1] = new Square(5 + xSpawnOffset, 0, tileType, false);
-			squares[2] = new Square(5 + xSpawnOffset, 1, tileType, false);
-			squares[3] = new Square(6 + xSpawnOffset, 1, tileType, false);
+			squares[0] = new Square(1 + xSpawnOffset, 0 + ySpawnOffset, tileType, false);
+			squares[1] = new Square(2 + xSpawnOffset, 0 + ySpawnOffset, tileType, false);
+			squares[2] = new Square(2 + xSpawnOffset, 1 + ySpawnOffset, tileType, false);
+			squares[3] = new Square(3 + xSpawnOffset, 1 + ySpawnOffset, tileType, false);
 			break;
 		case 'S':
-			// S
-			squares[0] = new Square(4 + xSpawnOffset, 1, tileType, false);
-			squares[1] = new Square(5 + xSpawnOffset, 1, tileType, false);
-			squares[2] = new Square(5 + xSpawnOffset, 0, tileType, false);
-			squares[3] = new Square(6 + xSpawnOffset, 0, tileType, false);
+			squares[0] = new Square(1 + xSpawnOffset, 1 + ySpawnOffset, tileType, false);
+			squares[1] = new Square(2 + xSpawnOffset, 1 + ySpawnOffset, tileType, false);
+			squares[2] = new Square(2 + xSpawnOffset, 0 + ySpawnOffset, tileType, false);
+			squares[3] = new Square(3 + xSpawnOffset, 0 + ySpawnOffset, tileType, false);
 			break;
 		}
 
 		boundingSquare = new BoundingSquare(this);
 	}
-
+	
+	public Tetromino(Tetromino tetromino){
+		this(tetromino.playfield, tetromino.tileType, 0, 1, tetromino.type);
+	}
+	
+	public void setXSpawnOffset(int xSpawnOffset){
+		this.xSpawnOffset = xSpawnOffset;
+	}
+	
 	public void fall() {
 		for (int i = 0; i < squares.length; i++) {
 			squares[i].fall(1);
@@ -107,13 +102,19 @@ public class Tetromino {
 		}
 		return true;
 	}
-
+	
 	public void move(int move) {
 		for (int i = 0; i < squares.length; i++) {
 			squares[i].move(move);
 		}
 	}
 
+	public void draw(SpriteBatch batch, Queuefield queuefield) {
+		for (Square square : squares) {
+			square.draw(batch, queuefield);
+		}
+	}
+	
 	public void draw(SpriteBatch batch, Playfield playfield) {
 		for (Square square : squares) {
 			square.draw(batch, playfield);

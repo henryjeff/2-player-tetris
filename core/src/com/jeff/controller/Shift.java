@@ -1,6 +1,7 @@
 package com.jeff.controller;
 
 import com.badlogic.gdx.Input;
+import com.jeff.game.Game;
 import com.jeff.gamescreen.Playfield;
 import com.jeff.gamescreen.Tetromino;
 
@@ -11,8 +12,8 @@ public class Shift implements Action {
 
 	MoveSystem moveSystem;
 	Playfield playfield;
-	int autoShiftTimer;
-	int shiftTimer;
+	float autoShiftTimer;
+	float shiftTimer;
 	int shiftAmount;
 	boolean enacting;
 
@@ -39,15 +40,15 @@ public class Shift implements Action {
 			moveSystem.shift(playfield, tetromino, shiftAmount);
 		}
 		if(input.isKeyPressed(key)){
-			if (autoShiftTimer >= 5) {
-				if(shiftTimer >= 2){
+			if (autoShiftTimer >= 0.25f) {
+				if(shiftTimer >= 0.05f){
 					shiftTimer = 0;
 					moveSystem.shift(playfield, tetromino, shiftAmount);				
 				}else{
-					shiftTimer++;
+					shiftTimer += Game.delta;
 				}
 			} else {
-				autoShiftTimer++;
+				autoShiftTimer += Game.delta;
 			}
 		} else {
 			autoShiftTimer = 0;
