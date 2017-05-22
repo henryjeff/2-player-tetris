@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.jeff.game.Game;
 import com.jeff.player.Player;
+import com.jeff.statemachine.StateName;
 
 public class Playfield {
 	private int height;
@@ -110,6 +111,9 @@ public class Playfield {
 		for (Entry<Player, Tetromino> entry : tetrominoMap.entrySet()) {
 			Player player = entry.getKey();
 			Tetromino tetromino = entry.getValue();
+			for(Square square : tetromino.squares){
+				square.update(delta);
+			}
 			if (tetromino.safeFall()) {
 				if (player.fallTimer >= player.fallSpeed) {
 					player.fallTimer = 0;
@@ -132,6 +136,11 @@ public class Playfield {
 				removeTetromino(player);
 				player.tetromino = null;
 				player.placeTimer = 0;
+			}
+		}
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) {
+				squares[x][y].update(delta);
 			}
 		}
 	}
@@ -216,7 +225,7 @@ public class Playfield {
 	}
 
 	public void setSquare(Square square) {
-
+		square.stateMachine.changeState(square.stateMachine.getState(StateName.SHINE));
 		squares[square.getX()][square.getY()] = square;
 	}
 
@@ -258,6 +267,9 @@ public class Playfield {
 
 	public void addTetromino(Player player, Tetromino tetromino) {
 		tetrominoMap.put(player, tetromino);
+		for(Square square : tetrominoMap.get(player).squares){
+			square.stateMachine.changeState(square.stateMachine.getState(StateName.CREATE));
+		}
 	}
 
 	public ConcurrentHashMap<Player, Tetromino> getTetrominoMap() {

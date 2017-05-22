@@ -16,15 +16,26 @@ public class StateMachine {
 		elapsedTime = 0.0f;
 		states = new ArrayList<State>();
 		addState(defaultState);
+		currentState = defaultState;
 	}
 	
 	public void addState(State state){
+		state.setStateMachineParent(this);
 		states.add(state);
+	}
+	
+	public State getState(StateName name){
+		for(State state : states){
+			if(state.stateName == name){
+				return state;
+			}
+		}
+		return null;
 	}
 	
 	public void update(float delta){
 		elapsedTime += delta;
-		if(currentState.animation.isAnimationFinished(elapsedTime)){
+		if(currentState.animation.isAnimationFinished(elapsedTime) && !currentState.loop){
 			changeState(defaultState);
 		}
 	}

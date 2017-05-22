@@ -72,7 +72,7 @@
             </struct>
         </struct>
         <key>shapePadding</key>
-        <uint>0</uint>
+        <uint>2</uint>
         <key>jpgQuality</key>
         <uint>80</uint>
         <key>pngOptimizationLevel</key>
@@ -86,7 +86,7 @@
         <key>textureFormat</key>
         <enum type="SettingsBase::TextureFormat">png</enum>
         <key>borderPadding</key>
-        <uint>0</uint>
+        <uint>1</uint>
         <key>maxTextureSize</key>
         <QSize>
             <key>width</key>
@@ -223,6 +223,46 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">../animations/tile/clear/blue/tile_clear_blue_1.png</key>
+            <key type="filename">../animations/tile/clear/blue/tile_clear_blue_2.png</key>
+            <key type="filename">../animations/tile/clear/blue/tile_clear_blue_3.png</key>
+            <key type="filename">../animations/tile/clear/blue/tile_clear_blue_4.png</key>
+            <key type="filename">../animations/tile/clear/blue/tile_clear_blue_5.png</key>
+            <key type="filename">../animations/tile/clear/red/tile_clear_red_1.png</key>
+            <key type="filename">../animations/tile/clear/red/tile_clear_red_2.png</key>
+            <key type="filename">../animations/tile/clear/red/tile_clear_red_3.png</key>
+            <key type="filename">../animations/tile/clear/red/tile_clear_red_4.png</key>
+            <key type="filename">../animations/tile/clear/red/tile_clear_red_5.png</key>
+            <key type="filename">../animations/tile/create/blue/tile_create_blue_1.png</key>
+            <key type="filename">../animations/tile/create/blue/tile_create_blue_10.png</key>
+            <key type="filename">../animations/tile/create/blue/tile_create_blue_11.png</key>
+            <key type="filename">../animations/tile/create/blue/tile_create_blue_12.png</key>
+            <key type="filename">../animations/tile/create/blue/tile_create_blue_13.png</key>
+            <key type="filename">../animations/tile/create/blue/tile_create_blue_2.png</key>
+            <key type="filename">../animations/tile/create/blue/tile_create_blue_3.png</key>
+            <key type="filename">../animations/tile/create/blue/tile_create_blue_4.png</key>
+            <key type="filename">../animations/tile/create/blue/tile_create_blue_5.png</key>
+            <key type="filename">../animations/tile/create/blue/tile_create_blue_6.png</key>
+            <key type="filename">../animations/tile/create/blue/tile_create_blue_7.png</key>
+            <key type="filename">../animations/tile/create/blue/tile_create_blue_8.png</key>
+            <key type="filename">../animations/tile/create/blue/tile_create_blue_9.png</key>
+            <key type="filename">../animations/tile/create/red/tile_create_red_1.png</key>
+            <key type="filename">../animations/tile/create/red/tile_create_red_10.png</key>
+            <key type="filename">../animations/tile/create/red/tile_create_red_11.png</key>
+            <key type="filename">../animations/tile/create/red/tile_create_red_12.png</key>
+            <key type="filename">../animations/tile/create/red/tile_create_red_13.png</key>
+            <key type="filename">../animations/tile/create/red/tile_create_red_2.png</key>
+            <key type="filename">../animations/tile/create/red/tile_create_red_3.png</key>
+            <key type="filename">../animations/tile/create/red/tile_create_red_4.png</key>
+            <key type="filename">../animations/tile/create/red/tile_create_red_5.png</key>
+            <key type="filename">../animations/tile/create/red/tile_create_red_6.png</key>
+            <key type="filename">../animations/tile/create/red/tile_create_red_7.png</key>
+            <key type="filename">../animations/tile/create/red/tile_create_red_8.png</key>
+            <key type="filename">../animations/tile/create/red/tile_create_red_9.png</key>
+            <key type="filename">../animations/tile/idle/tile_idle_bg.png</key>
+            <key type="filename">../animations/tile/idle/tile_idle_blue.png</key>
+            <key type="filename">../animations/tile/idle/tile_idle_playfield.png</key>
+            <key type="filename">../animations/tile/idle/tile_idle_red.png</key>
             <key type="filename">../animations/tile/shine/blue/tile_shine_blue_1.png</key>
             <key type="filename">../animations/tile/shine/blue/tile_shine_blue_10.png</key>
             <key type="filename">../animations/tile/shine/blue/tile_shine_blue_11.png</key>

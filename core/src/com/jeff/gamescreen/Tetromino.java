@@ -1,6 +1,7 @@
 package com.jeff.gamescreen;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.jeff.statemachine.StateMachine;
 
 public class Tetromino {
 
@@ -16,6 +17,7 @@ public class Tetromino {
 	
 	public Square[] squares;
 	public TileType tileType;
+	public StateMachine stateMachine;
 	public char type;
 	public int position;
 	public int xSpawnOffset;
@@ -76,7 +78,7 @@ public class Tetromino {
 			squares[3] = new Square(3 + xSpawnOffset, 0 + ySpawnOffset, tileType, false);
 			break;
 		}
-
+		
 		boundingSquare = new BoundingSquare(this);
 	}
 	

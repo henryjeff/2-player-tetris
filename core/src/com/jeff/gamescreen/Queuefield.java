@@ -1,5 +1,7 @@
 package com.jeff.gamescreen;
 
+import javax.sound.midi.Synthesizer;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
@@ -7,12 +9,14 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.jeff.game.Game;
 import com.jeff.player.Player;
+import com.jeff.statemachine.StateName;
 
 public class Queuefield {
 
 	public Square[][] squares;
 	public Player player;
-
+	public boolean clearing;
+	
 	private static final int[] bobY = new int[] { 0, 5, 7, 6, 5, -2 };
 	private static final int height = 4;
 	private static final int width = 5;
@@ -27,11 +31,13 @@ public class Queuefield {
 	private int x;
 	private int y;
 
+	
 	public Queuefield(int x, int y, TileType color, float parallaxWeight) {
 		this.squares = new Square[width][height];
 		this.parallaxWeight = parallaxWeight;
 		this.x = x;
 		this.y = y;
+		clearing = false;
 		xOffset = 0;
 		yOffset = 0;
 		xParallaxOffset = 0;
@@ -62,6 +68,11 @@ public class Queuefield {
 		xParallaxOffset = x - queuefieldWidth / 2 + parallaxOffsetX;
 		yParallaxOffset = y - queuefieldHeight / 2 + parallaxOffsetY;
 		yOffset = bobY[(int) ((Game.elapsedTime / 0.1f) % 6)];
+		if(tetromino != null){
+			for(Square square : tetromino.squares){
+				square.update(delta);
+			}			
+		}
 	}
 
 	public int getHeight() {
@@ -102,29 +113,15 @@ public class Queuefield {
 
 	public void changeTetromino(Tetromino tetromino) {
 		if (this.tetromino != tetromino) {
-			clearfield();
 			this.tetromino = tetromino;
 			setTetromino(tetromino);
 		}
 	}
 
-	public void clearfield() {
-		for (int y1 = 0; y1 < height; y1++) {
-			for (int x1 = 0; x1 < width; x1++) {
-				squares[x1][y1] = new Square(x1, y1, TileType.PLAYFIELD_BG, true);
-			}
-		}
-	}
-
 	public void setTetromino(Tetromino tetromino) {
-		clearfield();
 		for (Square square : tetromino.squares) {
-			setSquare(square);
+			square.stateMachine.changeState(square.stateMachine.getState(StateName.CREATE));
 		}
-	}
-
-	public void setSquare(Square square) {
-		squares[square.getX()][square.getY()] = square;
 	}
 
 	public void draw(SpriteBatch batch) {
@@ -133,6 +130,7 @@ public class Queuefield {
 				squares[x][y].draw(batch, this);
 			}
 		}
+		tetromino.draw(batch, this);
 		int parallaxOffsetX = (int) ((Game.camera.position.x - (Gdx.graphics.getWidth() / 2)) * parallaxWeight);
 		int parallaxOffsetY = (int) ((Game.camera.position.y - (Gdx.graphics.getHeight() / 2)) * parallaxWeight);
 		TextureRegion borderRegion = borderAnimation.getKeyFrame(Game.elapsedTime).split(121, 210)[0][0];

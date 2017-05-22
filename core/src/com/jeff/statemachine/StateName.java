@@ -2,5 +2,7 @@ package com.jeff.statemachine;
 
 public enum StateName {
 	IDLE,
-	SHINE
+	SHINE, 
+	CREATE,
+	CLEAR
 }
