@@ -29,8 +29,6 @@ public class GameScreen {
 	
 	private Player playerOne;
 	private Player playerTwo;
-	private Player playerThree;
-	private Player playerFour;
 
 	public GameScreen(int width, int height) {
 		BackgroundLayer sky = new BackgroundLayer(new Texture(Gdx.files.internal("backgrounds/sky.png")), 0.25f);
@@ -46,44 +44,26 @@ public class GameScreen {
 		
 		moveSystem = new MoveSystem();
 		rotationSystem = new RotationSystem();	
-		playfield = new Playfield(16, 24, 4.0f);
+		playfield = new Playfield(16, 22, 4.0f);
 		
 		HashMap<Integer, Action> playerOneControls = new HashMap<Integer, Action>();
-		playerOneControls.put(Keys.UP, new Rotate(rotationSystem, playfield));
-		playerOneControls.put(Keys.LEFT, new Shift(moveSystem, playfield, -1));
-		playerOneControls.put(Keys.RIGHT, new Shift(moveSystem, playfield, 1));
-		playerOneControls.put(Keys.DOWN, new ForceFall(moveSystem, playfield));
+		playerOneControls.put(Keys.W, new Rotate(rotationSystem, playfield));
+		playerOneControls.put(Keys.A, new Shift(moveSystem, playfield, -1));
+		playerOneControls.put(Keys.D, new Shift(moveSystem, playfield, 1));
+		playerOneControls.put(Keys.S, new ForceFall(moveSystem, playfield));
 		playerOne = new Player(playerOneControls, TileType.TILE_RED, 2);
 
 		HashMap<Integer, Action> playerTwoControls = new HashMap<Integer, Action>();
-		playerTwoControls.put(Keys.W, new Rotate(rotationSystem, playfield));
-		playerTwoControls.put(Keys.A, new Shift(moveSystem, playfield, -1));
-		playerTwoControls.put(Keys.D, new Shift(moveSystem, playfield, 1));
-		playerTwoControls.put(Keys.S, new ForceFall(moveSystem, playfield));
-		playerTwo = new Player(playerTwoControls, TileType.TILE_BLUE, 17);
-
-		HashMap<Integer, Action> playerThreeControls = new HashMap<Integer, Action>();
-		playerThreeControls.put(Keys.T, new Rotate(rotationSystem, playfield));
-		playerThreeControls.put(Keys.F, new Shift(moveSystem, playfield, -1));
-		playerThreeControls.put(Keys.H, new Shift(moveSystem, playfield, 1));
-		playerThreeControls.put(Keys.G, new ForceFall(moveSystem, playfield));
-		playerThree = new Player(playerThreeControls, TileType.TILE_GREEN, 0);
-
-		HashMap<Integer, Action> playerFourControls = new HashMap<Integer, Action>();
-		playerFourControls.put(Keys.I, new Rotate(rotationSystem, playfield));
-		playerFourControls.put(Keys.J, new Shift(moveSystem, playfield, -1));
-		playerFourControls.put(Keys.L, new Shift(moveSystem, playfield, 1));
-		playerFourControls.put(Keys.K, new ForceFall(moveSystem, playfield));
-		playerFour = new Player(playerFourControls, TileType.TILE_YELLOW, 0);
+		playerTwoControls.put(Keys.UP, new Rotate(rotationSystem, playfield));
+		playerTwoControls.put(Keys.LEFT, new Shift(moveSystem, playfield, -1));
+		playerTwoControls.put(Keys.RIGHT, new Shift(moveSystem, playfield, 1));
+		playerTwoControls.put(Keys.DOWN, new ForceFall(moveSystem, playfield));
+		playerTwo = new Player(playerTwoControls, TileType.TILE_BLUE, 14);
 
 		playfield.addPlayer(playerOne);
 		playfield.addPlayer(playerTwo);
-//		playfield.addPlayer(playerThree);
-//		playfield.addPlayer(playerFour);
-		playerOne.linkQueuefield(new Queuefield(128, 128 + 32 + 8, playerOne.tileType, 4.0f));
-		playerTwo.linkQueuefield(new Queuefield(1152,  128 + 32 + 8, playerTwo.tileType, 4.0f));
-//		playerThree.linkQueuefield(new Queuefield(1920, 1080, playerThree.tileType));
-//		playerFour.linkQueuefield(new Queuefield(0, 1080, playerFour.tileType));
+		playerOne.linkQueuefield(new Queuefield(128 + 12, 196, playerOne.tileType, 4.0f));
+		playerTwo.linkQueuefield(new Queuefield(1152 - 12,  196, playerTwo.tileType, 4.0f));
 	}
 
 	public void init() {
@@ -100,8 +80,6 @@ public class GameScreen {
 		playfield.update(delta);
 		playerOne.update(delta);
 		playerTwo.update(delta);
-//		playerThree.update(delta);
-//		playerFour.update(delta);
 		return 0;
 	}
 }

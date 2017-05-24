@@ -92,14 +92,12 @@ public class Square {
 		int drawX = (queuefield.getXParallaxOffset() + x * Game.SIZE_CLIP) - (queuefield.getXOffset() * 2);
 		int drawY = (queuefield.getYParallaxOffset() + y * Game.SIZE_CLIP) - (queuefield.getYOffset() * 2);
 		stateMachine.draw(batch, drawX, drawY, 2);
-//		batch.draw(texture, (queuefield.getXParallaxOffset() + x * Game.SIZE_CLIP) - (queuefield.getXOffset() * 2) , (queuefield.getYParallaxOffset() + y * Game.SIZE_CLIP) - (queuefield.getYOffset() * 2), 0, 0, texture.getWidth(), texture.getHeight(), 2, 2, 0, 0, 0, texture.getWidth(), texture.getHeight(),  false, true);
 	}
 
 	public void draw(SpriteBatch batch, Playfield playfield) {
 		int drawX = (playfield.getXParallaxOffset() + x * Game.SIZE_CLIP) - (playfield.getXOffset() * 2);
 		int drawY = (playfield.getYParallaxOffset() + y * Game.SIZE_CLIP) - (playfield.getYOffset() * 2);
 		stateMachine.draw(batch, drawX, drawY, 2);
-//		batch.draw(texture, (playfield.getXParallaxOffset() + x * Game.SIZE_CLIP) - (playfield.getXOffset() * 2), (playfield.getYParallaxOffset() + y * Game.SIZE_CLIP) - (playfield.getYOffset() * 2), 0, 0, texture.getWidth(), texture.getHeight(), 2, 2, 0, 0, 0, texture.getWidth(), texture.getHeight(),  false, true);
 	}
 	
 	public boolean isEmpty() {

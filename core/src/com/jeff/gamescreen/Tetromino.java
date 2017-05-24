@@ -97,9 +97,9 @@ public class Tetromino {
 	}
 	
 	public boolean safeFall(){
-		fall();
+		this.fall();
 		if(this.isColliding(playfield) || this.isOverlaps(playfield)){
-			up();
+			this.up();
 			return false;
 		}
 		return true;

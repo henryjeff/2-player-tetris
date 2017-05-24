@@ -1,8 +1,9 @@
 package com.jeff.gamescreen;
 
-import javax.sound.midi.Synthesizer;
+import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -22,7 +23,8 @@ public class Queuefield {
 	private static final int width = 5;
 	private Tetromino tetromino;
 	private Animation<TextureRegion> borderAnimation;
-
+	private TextHandler scoreText;
+	
 	private float parallaxWeight;
 	private int xParallaxOffset;
 	private int yParallaxOffset;
@@ -46,10 +48,12 @@ public class Queuefield {
 		case TILE_RED:
 			borderAnimation = new Animation<TextureRegion>(0.1f, Game.atlas.findRegions("red/queuefield_red"),
 					PlayMode.LOOP);
+			scoreText = new TextHandler("0", TileType.TILE_RED);
 			break;
 		case TILE_BLUE:
 			borderAnimation = new Animation<TextureRegion>(0.1f, Game.atlas.findRegions("blue/queuefield_blue"),
-					PlayMode.LOOP);
+					PlayMode.LOOP );
+			scoreText = new TextHandler("0", TileType.TILE_BLUE);
 			break;
 		}
 		player = null;
@@ -111,6 +115,10 @@ public class Queuefield {
 		return parallaxWeight;
 	}
 
+	public void changeScore(int score){
+		scoreText.setText(Integer.toString(score));
+	}
+	
 	public void changeTetromino(Tetromino tetromino) {
 		if (this.tetromino != tetromino) {
 			this.tetromino = tetromino;
@@ -133,8 +141,36 @@ public class Queuefield {
 		tetromino.draw(batch, this);
 		int parallaxOffsetX = (int) ((Game.camera.position.x - (Gdx.graphics.getWidth() / 2)) * parallaxWeight);
 		int parallaxOffsetY = (int) ((Game.camera.position.y - (Gdx.graphics.getHeight() / 2)) * parallaxWeight);
-		TextureRegion borderRegion = borderAnimation.getKeyFrame(Game.elapsedTime).split(121, 210)[0][0];
+		TextureRegion borderRegion = borderAnimation.getKeyFrame(Game.elapsedTime);
 		borderRegion.flip(false, true);
-		batch.draw(borderRegion, parallaxOffsetX + (x - (borderRegion.getRegionWidth())),parallaxOffsetY + y / 2 + 4 - (yOffset * 2), 0, 0, borderRegion.getRegionWidth(),borderRegion.getRegionHeight(), 2, 2, 0);
+		batch.draw(borderRegion, 
+				parallaxOffsetX + (x - (borderRegion.getRegionWidth())), 
+				parallaxOffsetY + (y - (borderRegion.getRegionHeight() / 2)) + 25 - (yOffset * 2), 
+				0, 
+				0, 
+				borderRegion.getRegionWidth(),
+				borderRegion.getRegionHeight(), 
+				2, 
+				2, 
+				0);
+		borderRegion.flip(false, true);
+		int numOfTextures = scoreText.getTexture().size();
+		ArrayList<Texture> scoreTextures = scoreText.getTexture();
+		for(int i = 0; i < numOfTextures; i++){
+			TextureRegion scoreRegion = new TextureRegion(scoreTextures.get(i));
+			int x1 = parallaxOffsetX + (x - (scoreRegion.getRegionWidth())) + (i * 12 + (i * 2));
+			scoreRegion.flip(false, true);
+			batch.draw(scoreRegion, 
+					x1 - 28, 
+					parallaxOffsetY + (y - (scoreRegion.getRegionHeight() / 2)) + 118 - (yOffset * 2), 
+					0, 
+					0, 
+					scoreRegion.getRegionWidth(),
+					scoreRegion.getRegionHeight(), 
+					2, 
+					2, 
+					0);
+			scoreRegion.flip(false, true);
+		}
 	}
 }

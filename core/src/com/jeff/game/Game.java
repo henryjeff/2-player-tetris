@@ -40,7 +40,7 @@ public class Game extends ApplicationAdapter {
 		gamescreen = new GameScreen(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		frameBuffer = new FrameBuffer(Pixmap.Format.RGBA8888, (int) camera.viewportWidth, (int) camera.viewportHeight, false);
 		frameBuffer.getColorBufferTexture().setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.Nearest);
-		shader = new ShaderProgram(Gdx.files.internal("shaders/stun.vert"), Gdx.files.internal("shaders/stun.frag"));
+		shader = new ShaderProgram(Gdx.files.internal("shaders/vignette.vert"), Gdx.files.internal("shaders/vignette.frag"));
 		if (!shader.isCompiled()) {
 			throw new GdxRuntimeException(shader.getLog());
 		}
@@ -51,34 +51,23 @@ public class Game extends ApplicationAdapter {
 	public void render() {
 		delta = Gdx.graphics.getDeltaTime();
 		elapsedTime += delta;
-//		camera.position.y += (float) (Math.cos(elapsedTime));
-//		camera.rotate((float) Math.cos(elapsedTime) / 50);
-//		camera.zoom += Math.cos(elapsedTime) / 20;
-//		System.out.println(camera.zoom);
-		
+
 		cameraY += (float) (Math.cos(2 * elapsedTime) / 10);
 		camera.position.y = cameraY;
 		
 		cameraX = Gdx.graphics.getWidth() / 2 + (float) (Math.sin(elapsedTime) * 2);
 		camera.position.x = cameraX;
-//		System.out.println(camera.position.x);
+
 		batch.setProjectionMatrix(camera.combined);
 		camera.update();
 		batch.begin();
-//		frameBuffer.begin();
 		Gdx.gl.glClearColor(0.054f, 0.054f, 0.90f, 1.0f);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		gamescreen.update(delta);
 		gamescreen.render(batch);
 		batch.flush();
-//		frameBuffer.end();
 		batch.end();
-		
-//		batch.begin();
-//		batch.draw(frameBuffer.getColorBufferTexture(), 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-//		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-//		batch.end();
-//		batch.setShader(null);
+		batch.setShader(null);
 	}
 
 	@Override

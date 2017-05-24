@@ -22,7 +22,7 @@ public class Player{
 	public Queuefield queuefield;
 	public Playfield playfield;
 	
-	private long score;
+	private int score;
 	
 	public int spawnOffset;
 	public float placeTimer;
@@ -76,6 +76,7 @@ public class Player{
 	
 	public void addPoints(long points){
 		score += points;
+		queuefield.changeScore(score);
 		System.out.println(tileType + ": " + score);
 	}
 	
