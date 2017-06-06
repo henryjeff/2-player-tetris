@@ -1,9 +1,13 @@
 package com.jeff.gamescreen;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 
 import com.badlogic.gdx.Gdx;
@@ -18,13 +22,16 @@ public class Playfield {
 	private int height;
 	private int width;
 	private Square[][] squares;
-
+	private static final List<ItemType> itemTypes = Arrays.asList(ItemType.LOCK, ItemType.SKIP); 
+	private static final HashMap<Integer, Float> levelData = new HashMap<Integer, Float>();
+	private Random random;
 	private ConcurrentHashMap<Player, Tetromino> tetrominoMap;
 	private List<Player> players;
+	private List<Item> items;
 	private RandomGenerator randomGenerator;
-
 	private Texture borderTexture;
 	private float parallaxWeight;
+	private float globalFallSpeed;
 	private int xParallaxOffset;
 	private int yParallaxOffset;
 	private int xOffset;
@@ -38,12 +45,20 @@ public class Playfield {
 		this.width = width;
 		this.parallaxWeight = parallaxWeight;
 		this.squares = new Square[width][height];
+		levelData.put(30, 1.0f);
+		levelData.put(60, 1.25f);
+		levelData.put(120, 1.5f);
+		levelData.put(160, 2.0f);
+		levelData.put(200, 3.0f);
+		globalFallSpeed = 1.0f;
 		randomGenerator = new RandomGenerator();
+		random = new Random();
 		x = Gdx.graphics.getWidth() / 2;
 		y = Gdx.graphics.getHeight() / 2;
 		xOffset = 0;
 		yOffset = 0;
-		players = new ArrayList<Player>();
+		items = Collections.synchronizedList(new ArrayList<Item>());
+		players = new ArrayList<Player>(); 	
 		tetrominoMap = new ConcurrentHashMap<Player, Tetromino>();
 		for (int y = 0; y < this.height; y++) {
 			for (int x = 0; x < this.width; x++) {
@@ -90,6 +105,31 @@ public class Playfield {
 	}
 
 	public void update(float delta) {
+		int chance = 100;
+		int seed = random.nextInt(chance) + 1;
+		if(seed == chance){
+			int itemX = random.nextInt(width - 2) + 1;
+			int itemY = random.nextInt(height - 1) + 1;
+			for(Item item : items){
+				if (item.x == itemX && item.y == itemY) {
+					itemX = random.nextInt(width - 2) + 1;
+					itemY = random.nextInt(height - 1) + 1;
+				}
+			}
+			ItemType type = itemTypes.get(random.nextInt(itemTypes.size()));
+			Item item = new Item(itemX, itemY, type, this);
+			item.stateMachine.changeState(item.stateMachine.getState(StateName.CREATE));;
+			addItem(item);
+		}
+		for(Item item : items){			
+			item.update(delta);
+		}
+		for(Iterator<Item> iter = items.iterator(); iter.hasNext(); ) {
+			Item next = iter.next();
+			if(next.shouldBeDestroyed()) {
+				iter.remove();
+			}
+		}
 		int queuefieldWidth = width * Game.SIZE_CLIP;
 		int queuefieldHeight = height * Game.SIZE_CLIP;
 		int parallaxOffsetX = (int) ((Game.camera.position.x - (Gdx.graphics.getWidth() / 2)) * parallaxWeight);
@@ -129,7 +169,7 @@ public class Playfield {
 			}
 			if (player.placeTimer >= player.placeSpeed) {
 				setTetromino(player.tetromino);
-				long clearedLines = checkLines(player.tetromino);
+				long clearedLines = checkLines(player, player.tetromino);
 				if(clearedLines >= 1){
 					player.addPoints(clearedLines);
 				}
@@ -151,6 +191,9 @@ public class Playfield {
 				squares[x][y].draw(batch, this);
 			}
 		}
+		for(Item item : items){
+			item.draw(batch, this);
+		}
 		for (Tetromino tetromino : tetrominoMap.values()) {
 			tetromino.draw(batch, this);
 		}
@@ -170,7 +213,7 @@ public class Playfield {
 		}
 	}
 
-	public long checkLines(Tetromino tetromino) {
+	public long checkLines(Player player, Tetromino tetromino) {
 		long lineClear = 0;
 		ArrayList<Integer> lines = new ArrayList<Integer>();
 		for (Square square : tetromino.squares) {
@@ -186,16 +229,27 @@ public class Playfield {
 				}
 			}
 			boolean isComplete = true;
+			List<Item> lineItems = new ArrayList<Item>();
 			ArrayList<Square> line = getLines(lines.get(y) + yyy);
 			for (Square square : line) {
 				if (square.isEmpty()) {
 					isComplete = false;
+					break;
+				}
+				for(Item item : items){
+					if(item.y == square.getY()){
+						lineItems.add(item);
+					}
 				}
 			}
 			if (isComplete) {
 				lineClear++;
 				removeLine(line);
 				fallLine(lines.get(y) + yyy);
+				for(Item item : lineItems){
+					player.addItem(item);
+					item.destroy();
+				}
 			}
 		}
 		return lineClear;
@@ -272,6 +326,14 @@ public class Playfield {
 		}
 	}
 
+	public void addItem(Item item){
+		items.add(item);
+	}
+	
+	public void removeItem(Item item){
+		items.remove(item);
+	}
+	
 	public ConcurrentHashMap<Player, Tetromino> getTetrominoMap() {
 		return tetrominoMap;
 	}

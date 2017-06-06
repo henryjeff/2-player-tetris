@@ -2,11 +2,13 @@ package com.jeff.player;
 
 import java.util.HashMap;
 import java.util.Map.Entry;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jeff.controller.Action;
+import com.jeff.gamescreen.Item;
 import com.jeff.gamescreen.Playfield;
 import com.jeff.gamescreen.Queuefield;
 import com.jeff.gamescreen.Tetromino;
@@ -18,6 +20,7 @@ public class Player{
 	public Tetromino tetromino;
 	public Tetromino nextTetromino;
 	public TileType tileType;
+	public ConcurrentLinkedQueue<Item> items;
 	
 	public Queuefield queuefield;
 	public Playfield playfield;
@@ -35,6 +38,7 @@ public class Player{
 		this.controlMap = controlMap;
 		this.spawnOffset = spawnOffset;
 		this.tileType = tileType;
+		items = new ConcurrentLinkedQueue<Item>();
 		tetromino = null;
 		nextTetromino = null;
 		playfield = null;
@@ -82,5 +86,13 @@ public class Player{
 	
 	public Tetromino getNextTetromino(){
 		return nextTetromino;
+	}
+
+	public void addItem(Item item) {
+		items.add(item);
+	}
+	
+	public void changeFallSpeed(float fallSpeed){
+		this.fallSpeed = fallSpeed;
 	}
 }

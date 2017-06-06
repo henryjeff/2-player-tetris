@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.utils.GdxRuntimeException;
+import com.jeff.gamescreen.CameraShake;
 import com.jeff.views.GameScreen;
 
 public class Game extends ApplicationAdapter {
@@ -18,6 +19,7 @@ public class Game extends ApplicationAdapter {
 	private FrameBuffer frameBuffer;
 	private GameScreen gamescreen;
 	private ShaderProgram shader;
+	public static CameraShake cameraShake;
 	public static OrthographicCamera camera;
 	public static TextureAtlas atlas;
 	public static float delta;
@@ -33,6 +35,9 @@ public class Game extends ApplicationAdapter {
 		camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		camera.setToOrtho(true);
 //		camera.zoom = 1.10f;
+		// float intensity, float interval, float length
+		cameraShake = new CameraShake(30.0f, 2.0f, 1.0f);
+		
 		camera.update();
 		cameraY = camera.position.y;
 		cameraX = camera.position.x;
@@ -52,12 +57,18 @@ public class Game extends ApplicationAdapter {
 		delta = Gdx.graphics.getDeltaTime();
 		elapsedTime += delta;
 
+		if((int)(elapsedTime % 5 )== 0){
+			System.out.println("sup");
+//			cameraShake.playShake(elapsedTime);
+		}
+		
 		cameraY += (float) (Math.cos(2 * elapsedTime) / 10);
 		camera.position.y = cameraY;
 		
 		cameraX = Gdx.graphics.getWidth() / 2 + (float) (Math.sin(elapsedTime) * 2);
 		camera.position.x = cameraX;
-
+		cameraShake.update(elapsedTime, camera);
+		
 		batch.setProjectionMatrix(camera.combined);
 		camera.update();
 		batch.begin();

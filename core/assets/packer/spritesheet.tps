@@ -6,7 +6,7 @@
         <key>texturePackerVersion</key>
         <string>4.4.0</string>
         <key>fileName</key>
-        <string>D:/Users/Henry Heffernan/workspace/LibGDX 2PT/core/assets/packer/spritesheet.tps</string>
+        <string>C:/Users/Henry Heffernan/workspace/2-player-tetris/core/assets/packer/spritesheet.tps</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -199,6 +199,68 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
+            <key type="filename">../animations/items/lock/clear/items_lock_clear_0.png</key>
+            <key type="filename">../animations/items/lock/clear/items_lock_clear_1.png</key>
+            <key type="filename">../animations/items/lock/clear/items_lock_clear_2.png</key>
+            <key type="filename">../animations/items/lock/clear/items_lock_clear_3.png</key>
+            <key type="filename">../animations/items/lock/clear/items_lock_clear_4.png</key>
+            <key type="filename">../animations/items/lock/clear/items_lock_clear_5.png</key>
+            <key type="filename">../animations/items/lock/clear/items_lock_clear_6.png</key>
+            <key type="filename">../animations/items/lock/clear/items_lock_clear_7.png</key>
+            <key type="filename">../animations/items/lock/clear/items_lock_clear_8.png</key>
+            <key type="filename">../animations/items/lock/clear/items_lock_clear_9.png</key>
+            <key type="filename">../animations/items/lock/create/items_lock_create_0.png</key>
+            <key type="filename">../animations/items/lock/create/items_lock_create_1.png</key>
+            <key type="filename">../animations/items/lock/create/items_lock_create_10.png</key>
+            <key type="filename">../animations/items/lock/create/items_lock_create_11.png</key>
+            <key type="filename">../animations/items/lock/create/items_lock_create_2.png</key>
+            <key type="filename">../animations/items/lock/create/items_lock_create_3.png</key>
+            <key type="filename">../animations/items/lock/create/items_lock_create_4.png</key>
+            <key type="filename">../animations/items/lock/create/items_lock_create_5.png</key>
+            <key type="filename">../animations/items/lock/create/items_lock_create_6.png</key>
+            <key type="filename">../animations/items/lock/create/items_lock_create_7.png</key>
+            <key type="filename">../animations/items/lock/create/items_lock_create_8.png</key>
+            <key type="filename">../animations/items/lock/create/items_lock_create_9.png</key>
+            <key type="filename">../animations/items/lock/idle/items_lock_idle_1.png</key>
+            <key type="filename">../animations/items/skip/clear/items_skip_clear_0.png</key>
+            <key type="filename">../animations/items/skip/clear/items_skip_clear_1.png</key>
+            <key type="filename">../animations/items/skip/clear/items_skip_clear_10.png</key>
+            <key type="filename">../animations/items/skip/clear/items_skip_clear_11.png</key>
+            <key type="filename">../animations/items/skip/clear/items_skip_clear_2.png</key>
+            <key type="filename">../animations/items/skip/clear/items_skip_clear_3.png</key>
+            <key type="filename">../animations/items/skip/clear/items_skip_clear_4.png</key>
+            <key type="filename">../animations/items/skip/clear/items_skip_clear_5.png</key>
+            <key type="filename">../animations/items/skip/clear/items_skip_clear_6.png</key>
+            <key type="filename">../animations/items/skip/clear/items_skip_clear_7.png</key>
+            <key type="filename">../animations/items/skip/clear/items_skip_clear_8.png</key>
+            <key type="filename">../animations/items/skip/clear/items_skip_clear_9.png</key>
+            <key type="filename">../animations/items/skip/create/items_skip_create_0.png</key>
+            <key type="filename">../animations/items/skip/create/items_skip_create_1.png</key>
+            <key type="filename">../animations/items/skip/create/items_skip_create_10.png</key>
+            <key type="filename">../animations/items/skip/create/items_skip_create_11.png</key>
+            <key type="filename">../animations/items/skip/create/items_skip_create_12.png</key>
+            <key type="filename">../animations/items/skip/create/items_skip_create_13.png</key>
+            <key type="filename">../animations/items/skip/create/items_skip_create_2.png</key>
+            <key type="filename">../animations/items/skip/create/items_skip_create_3.png</key>
+            <key type="filename">../animations/items/skip/create/items_skip_create_4.png</key>
+            <key type="filename">../animations/items/skip/create/items_skip_create_5.png</key>
+            <key type="filename">../animations/items/skip/create/items_skip_create_6.png</key>
+            <key type="filename">../animations/items/skip/create/items_skip_create_7.png</key>
+            <key type="filename">../animations/items/skip/create/items_skip_create_8.png</key>
+            <key type="filename">../animations/items/skip/create/items_skip_create_9.png</key>
+            <key type="filename">../animations/items/skip/idle/items_skip_idle_1.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>16,16,32,32</rect>
+                <key>scale9Paddings</key>
+                <rect>16,16,32,32</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">../animations/queuefield/blue/queuefield_blue_1.png</key>
             <key type="filename">../animations/queuefield/blue/queuefield_blue_2.png</key>
             <key type="filename">../animations/queuefield/blue/queuefield_blue_3.png</key>
@@ -302,6 +364,7 @@
         <array>
             <filename>../animations/queuefield</filename>
             <filename>../animations/tile</filename>
+            <filename>../animations/items</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
