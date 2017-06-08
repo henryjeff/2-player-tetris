@@ -6,7 +6,7 @@
         <key>texturePackerVersion</key>
         <string>4.4.0</string>
         <key>fileName</key>
-        <string>C:/Users/Henry Heffernan/workspace/2-player-tetris/core/assets/packer/spritesheet.tps</string>
+        <string>D:/Users/Henry Heffernan/workspace/LibGDX 2PT/core/assets/packer/spritesheet.tps</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -199,6 +199,69 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
+            <key type="filename">../animations/itemqueue/blue/itemqueue_blue_1.png</key>
+            <key type="filename">../animations/itemqueue/blue/itemqueue_blue_10.png</key>
+            <key type="filename">../animations/itemqueue/blue/itemqueue_blue_11.png</key>
+            <key type="filename">../animations/itemqueue/blue/itemqueue_blue_12.png</key>
+            <key type="filename">../animations/itemqueue/blue/itemqueue_blue_13.png</key>
+            <key type="filename">../animations/itemqueue/blue/itemqueue_blue_2.png</key>
+            <key type="filename">../animations/itemqueue/blue/itemqueue_blue_3.png</key>
+            <key type="filename">../animations/itemqueue/blue/itemqueue_blue_4.png</key>
+            <key type="filename">../animations/itemqueue/blue/itemqueue_blue_5.png</key>
+            <key type="filename">../animations/itemqueue/blue/itemqueue_blue_6.png</key>
+            <key type="filename">../animations/itemqueue/blue/itemqueue_blue_7.png</key>
+            <key type="filename">../animations/itemqueue/blue/itemqueue_blue_8.png</key>
+            <key type="filename">../animations/itemqueue/blue/itemqueue_blue_9.png</key>
+            <key type="filename">../animations/itemqueue/red/itemqueue_red_1.png</key>
+            <key type="filename">../animations/itemqueue/red/itemqueue_red_10.png</key>
+            <key type="filename">../animations/itemqueue/red/itemqueue_red_11.png</key>
+            <key type="filename">../animations/itemqueue/red/itemqueue_red_12.png</key>
+            <key type="filename">../animations/itemqueue/red/itemqueue_red_13.png</key>
+            <key type="filename">../animations/itemqueue/red/itemqueue_red_2.png</key>
+            <key type="filename">../animations/itemqueue/red/itemqueue_red_3.png</key>
+            <key type="filename">../animations/itemqueue/red/itemqueue_red_4.png</key>
+            <key type="filename">../animations/itemqueue/red/itemqueue_red_5.png</key>
+            <key type="filename">../animations/itemqueue/red/itemqueue_red_6.png</key>
+            <key type="filename">../animations/itemqueue/red/itemqueue_red_7.png</key>
+            <key type="filename">../animations/itemqueue/red/itemqueue_red_8.png</key>
+            <key type="filename">../animations/itemqueue/red/itemqueue_red_9.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>22,28,43,57</rect>
+                <key>scale9Paddings</key>
+                <rect>22,28,43,57</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../animations/items/destroy/clear/items_destroy_clear_1.png</key>
+            <key type="filename">../animations/items/destroy/clear/items_destroy_clear_2.png</key>
+            <key type="filename">../animations/items/destroy/clear/items_destroy_clear_3.png</key>
+            <key type="filename">../animations/items/destroy/clear/items_destroy_clear_4.png</key>
+            <key type="filename">../animations/items/destroy/clear/items_destroy_clear_5.png</key>
+            <key type="filename">../animations/items/destroy/clear/items_destroy_clear_6.png</key>
+            <key type="filename">../animations/items/destroy/clear/items_destroy_clear_7.png</key>
+            <key type="filename">../animations/items/destroy/clear/items_destroy_clear_8.png</key>
+            <key type="filename">../animations/items/destroy/create/items_destroy_create_1.png</key>
+            <key type="filename">../animations/items/destroy/create/items_destroy_create_10.png</key>
+            <key type="filename">../animations/items/destroy/create/items_destroy_create_11.png</key>
+            <key type="filename">../animations/items/destroy/create/items_destroy_create_12.png</key>
+            <key type="filename">../animations/items/destroy/create/items_destroy_create_13.png</key>
+            <key type="filename">../animations/items/destroy/create/items_destroy_create_2.png</key>
+            <key type="filename">../animations/items/destroy/create/items_destroy_create_3.png</key>
+            <key type="filename">../animations/items/destroy/create/items_destroy_create_4.png</key>
+            <key type="filename">../animations/items/destroy/create/items_destroy_create_5.png</key>
+            <key type="filename">../animations/items/destroy/create/items_destroy_create_6.png</key>
+            <key type="filename">../animations/items/destroy/create/items_destroy_create_7.png</key>
+            <key type="filename">../animations/items/destroy/create/items_destroy_create_8.png</key>
+            <key type="filename">../animations/items/destroy/create/items_destroy_create_9.png</key>
+            <key type="filename">../animations/items/destroy/idle/items_destroy_idle_1.png</key>
+            <key type="filename">../animations/items/empty/clear/items_empty_clear_1.png</key>
+            <key type="filename">../animations/items/empty/create/items_empty_create_1.png</key>
+            <key type="filename">../animations/items/empty/idle/items_empty_idle_1.png</key>
             <key type="filename">../animations/items/lock/clear/items_lock_clear_0.png</key>
             <key type="filename">../animations/items/lock/clear/items_lock_clear_1.png</key>
             <key type="filename">../animations/items/lock/clear/items_lock_clear_2.png</key>
@@ -222,18 +285,12 @@
             <key type="filename">../animations/items/lock/create/items_lock_create_8.png</key>
             <key type="filename">../animations/items/lock/create/items_lock_create_9.png</key>
             <key type="filename">../animations/items/lock/idle/items_lock_idle_1.png</key>
-            <key type="filename">../animations/items/skip/clear/items_skip_clear_0.png</key>
             <key type="filename">../animations/items/skip/clear/items_skip_clear_1.png</key>
-            <key type="filename">../animations/items/skip/clear/items_skip_clear_10.png</key>
-            <key type="filename">../animations/items/skip/clear/items_skip_clear_11.png</key>
             <key type="filename">../animations/items/skip/clear/items_skip_clear_2.png</key>
             <key type="filename">../animations/items/skip/clear/items_skip_clear_3.png</key>
             <key type="filename">../animations/items/skip/clear/items_skip_clear_4.png</key>
             <key type="filename">../animations/items/skip/clear/items_skip_clear_5.png</key>
             <key type="filename">../animations/items/skip/clear/items_skip_clear_6.png</key>
-            <key type="filename">../animations/items/skip/clear/items_skip_clear_7.png</key>
-            <key type="filename">../animations/items/skip/clear/items_skip_clear_8.png</key>
-            <key type="filename">../animations/items/skip/clear/items_skip_clear_9.png</key>
             <key type="filename">../animations/items/skip/create/items_skip_create_0.png</key>
             <key type="filename">../animations/items/skip/create/items_skip_create_1.png</key>
             <key type="filename">../animations/items/skip/create/items_skip_create_10.png</key>
@@ -249,6 +306,24 @@
             <key type="filename">../animations/items/skip/create/items_skip_create_8.png</key>
             <key type="filename">../animations/items/skip/create/items_skip_create_9.png</key>
             <key type="filename">../animations/items/skip/idle/items_skip_idle_1.png</key>
+            <key type="filename">../animations/items/speed/clear/items_speed_clear_1.png</key>
+            <key type="filename">../animations/items/speed/clear/items_speed_clear_2.png</key>
+            <key type="filename">../animations/items/speed/clear/items_speed_clear_3.png</key>
+            <key type="filename">../animations/items/speed/clear/items_speed_clear_4.png</key>
+            <key type="filename">../animations/items/speed/create/items_speed_create_1.png</key>
+            <key type="filename">../animations/items/speed/create/items_speed_create_10.png</key>
+            <key type="filename">../animations/items/speed/create/items_speed_create_11.png</key>
+            <key type="filename">../animations/items/speed/create/items_speed_create_12.png</key>
+            <key type="filename">../animations/items/speed/create/items_speed_create_13.png</key>
+            <key type="filename">../animations/items/speed/create/items_speed_create_2.png</key>
+            <key type="filename">../animations/items/speed/create/items_speed_create_3.png</key>
+            <key type="filename">../animations/items/speed/create/items_speed_create_4.png</key>
+            <key type="filename">../animations/items/speed/create/items_speed_create_5.png</key>
+            <key type="filename">../animations/items/speed/create/items_speed_create_6.png</key>
+            <key type="filename">../animations/items/speed/create/items_speed_create_7.png</key>
+            <key type="filename">../animations/items/speed/create/items_speed_create_8.png</key>
+            <key type="filename">../animations/items/speed/create/items_speed_create_9.png</key>
+            <key type="filename">../animations/items/speed/idle/items_speed_idle_1.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -261,18 +336,48 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">../animations/playfield/playfield_1.png</key>
+            <key type="filename">../animations/playfield/playfield_2.png</key>
+            <key type="filename">../animations/playfield/playfield_3.png</key>
+            <key type="filename">../animations/playfield/playfield_4.png</key>
+            <key type="filename">../animations/playfield/playfield_5.png</key>
+            <key type="filename">../animations/playfield/playfield_6.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>96,84,191,169</rect>
+                <key>scale9Paddings</key>
+                <rect>96,84,191,169</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">../animations/queuefield/blue/queuefield_blue_1.png</key>
             <key type="filename">../animations/queuefield/blue/queuefield_blue_2.png</key>
             <key type="filename">../animations/queuefield/blue/queuefield_blue_3.png</key>
             <key type="filename">../animations/queuefield/blue/queuefield_blue_4.png</key>
             <key type="filename">../animations/queuefield/blue/queuefield_blue_5.png</key>
             <key type="filename">../animations/queuefield/blue/queuefield_blue_6.png</key>
+            <key type="filename">../animations/queuefield/lock/queuefield_lock_1.png</key>
+            <key type="filename">../animations/queuefield/lock/queuefield_lock_2.png</key>
+            <key type="filename">../animations/queuefield/lock/queuefield_lock_3.png</key>
+            <key type="filename">../animations/queuefield/lock/queuefield_lock_4.png</key>
+            <key type="filename">../animations/queuefield/lock/queuefield_lock_5.png</key>
+            <key type="filename">../animations/queuefield/lock/queuefield_lock_6.png</key>
             <key type="filename">../animations/queuefield/red/queuefield_red_1.png</key>
             <key type="filename">../animations/queuefield/red/queuefield_red_2.png</key>
             <key type="filename">../animations/queuefield/red/queuefield_red_3.png</key>
             <key type="filename">../animations/queuefield/red/queuefield_red_4.png</key>
             <key type="filename">../animations/queuefield/red/queuefield_red_5.png</key>
             <key type="filename">../animations/queuefield/red/queuefield_red_6.png</key>
+            <key type="filename">../animations/queuefield/speed/queuefield_speed_1.png</key>
+            <key type="filename">../animations/queuefield/speed/queuefield_speed_2.png</key>
+            <key type="filename">../animations/queuefield/speed/queuefield_speed_3.png</key>
+            <key type="filename">../animations/queuefield/speed/queuefield_speed_4.png</key>
+            <key type="filename">../animations/queuefield/speed/queuefield_speed_5.png</key>
+            <key type="filename">../animations/queuefield/speed/queuefield_speed_6.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -365,6 +470,8 @@
             <filename>../animations/queuefield</filename>
             <filename>../animations/tile</filename>
             <filename>../animations/items</filename>
+            <filename>../animations/itemqueue</filename>
+            <filename>../animations/playfield</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

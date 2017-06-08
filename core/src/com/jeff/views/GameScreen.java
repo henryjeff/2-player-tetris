@@ -5,15 +5,17 @@ import java.util.HashMap;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.jeff.controller.Ability;
 import com.jeff.controller.Action;
 import com.jeff.controller.ForceFall;
 import com.jeff.controller.Rotate;
 import com.jeff.controller.Shift;
+import com.jeff.controller.UseItem;
 import com.jeff.gamescreen.Background;
 import com.jeff.gamescreen.BackgroundLayer;
+import com.jeff.gamescreen.Itemqueue;
 import com.jeff.gamescreen.Playfield;
 import com.jeff.gamescreen.Queuefield;
 import com.jeff.gamescreen.TileType;
@@ -51,19 +53,25 @@ public class GameScreen {
 		playerOneControls.put(Keys.A, new Shift(moveSystem, playfield, -1));
 		playerOneControls.put(Keys.D, new Shift(moveSystem, playfield, 1));
 		playerOneControls.put(Keys.S, new ForceFall(moveSystem, playfield));
-		playerOne = new Player(playerOneControls, TileType.TILE_RED, 2);
+		HashMap<Integer, Ability> playerOneAbilities = new HashMap<Integer, Ability>();
+		playerOneAbilities.put(Keys.E, new UseItem(playfield));
+		playerOne = new Player(playerOneControls, playerOneAbilities, TileType.TILE_RED, 2);
 
 		HashMap<Integer, Action> playerTwoControls = new HashMap<Integer, Action>();
 		playerTwoControls.put(Keys.UP, new Rotate(rotationSystem, playfield));
 		playerTwoControls.put(Keys.LEFT, new Shift(moveSystem, playfield, -1));
 		playerTwoControls.put(Keys.RIGHT, new Shift(moveSystem, playfield, 1));
 		playerTwoControls.put(Keys.DOWN, new ForceFall(moveSystem, playfield));
-		playerTwo = new Player(playerTwoControls, TileType.TILE_BLUE, 14);
+		HashMap<Integer, Ability> playerTwoAbilities = new HashMap<Integer, Ability>();
+		playerTwoAbilities.put(Keys.INSERT, new UseItem(playfield));
+		playerTwo = new Player(playerTwoControls, playerTwoAbilities, TileType.TILE_BLUE, 14);
 
 		playfield.addPlayer(playerOne);
 		playfield.addPlayer(playerTwo);
-		playerOne.linkQueuefield(new Queuefield(128 + 12, 196, playerOne.tileType, 4.0f));
-		playerTwo.linkQueuefield(new Queuefield(1152 - 12,  196, playerTwo.tileType, 4.0f));
+		playerOne.linkQueuefield(new Queuefield(128 + 12, 138, playerOne.tileType, 4.0f));
+		playerTwo.linkQueuefield(new Queuefield(1152 - 12,  138, playerTwo.tileType, 4.0f));
+		playerOne.linkItemQueue(new Itemqueue(128 + 12, 526, playerOne.tileType, 4.0f));
+		playerTwo.linkItemQueue(new Itemqueue(1152 - 12, 526,playerTwo.tileType, 4.0f));
 	}
 
 	public void init() {

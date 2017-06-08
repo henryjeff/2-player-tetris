@@ -738,7 +738,23 @@ public class Tetromino {
 			break;
 		}
 	}
-
+	
+	public boolean isOverlapTetromino(Tetromino tetromino){
+		this.fall();
+		for(Square square1: squares){
+			if(tetromino != null){
+				for(Square square2 : tetromino.squares){
+					if(square1.getX() == square2.getX() && square1.getY() == square2.getY()){
+						this.up();
+						return true;
+					}
+				}
+			}
+		}
+		this.up();
+		return false;
+	}
+	
 	public boolean isOverlaps(Playfield playfield) {
 		for (Square square : squares) {
 			if (!playfield.getSquare(square.getX(), square.getY()).isEmpty()) {

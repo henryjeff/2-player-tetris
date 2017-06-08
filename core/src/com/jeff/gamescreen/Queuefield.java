@@ -17,14 +17,14 @@ public class Queuefield {
 	public Square[][] squares;
 	public Player player;
 	public boolean clearing;
-	
+	private TileType color;
 	private static final int[] bobY = new int[] { 0, 5, 7, 6, 5, -2 };
 	private static final int height = 4;
 	private static final int width = 5;
 	private Tetromino tetromino;
 	private Animation<TextureRegion> borderAnimation;
 	private TextHandler scoreText;
-	
+
 	private float parallaxWeight;
 	private int xParallaxOffset;
 	private int yParallaxOffset;
@@ -33,12 +33,12 @@ public class Queuefield {
 	private int x;
 	private int y;
 
-	
 	public Queuefield(int x, int y, TileType color, float parallaxWeight) {
 		this.squares = new Square[width][height];
 		this.parallaxWeight = parallaxWeight;
 		this.x = x;
 		this.y = y;
+		this.color = color;
 		clearing = false;
 		xOffset = 0;
 		yOffset = 0;
@@ -52,7 +52,7 @@ public class Queuefield {
 			break;
 		case TILE_BLUE:
 			borderAnimation = new Animation<TextureRegion>(0.1f, Game.atlas.findRegions("blue/queuefield_blue"),
-					PlayMode.LOOP );
+					PlayMode.LOOP);
 			scoreText = new TextHandler("0", TileType.TILE_BLUE);
 			break;
 		}
@@ -72,10 +72,35 @@ public class Queuefield {
 		xParallaxOffset = x - queuefieldWidth / 2 + parallaxOffsetX;
 		yParallaxOffset = y - queuefieldHeight / 2 + parallaxOffsetY;
 		yOffset = bobY[(int) ((Game.elapsedTime / 0.1f) % 6)];
-		if(tetromino != null){
-			for(Square square : tetromino.squares){
+		if (tetromino != null) {
+			for (Square square : tetromino.squares) {
 				square.update(delta);
-			}			
+			}
+		}
+		if(player.isSpeed){
+			borderAnimation = new Animation<TextureRegion>(0.1f, Game.atlas.findRegions("speed/queuefield_speed"),
+					PlayMode.LOOP);
+			scoreText = new TextHandler(scoreText.text, TileType.TILE_GREEN);
+		}
+		if(player.isLocked){
+			borderAnimation = new Animation<TextureRegion>(0.1f, Game.atlas.findRegions("lock/queuefield_lock"),
+					PlayMode.LOOP);
+			scoreText = new TextHandler(scoreText.text, TileType.TILE_WHITE);
+		}
+		if(player.isNormal){
+			switch (color) {
+				case TILE_RED:
+					borderAnimation = new Animation<TextureRegion>(0.1f, Game.atlas.findRegions("red/queuefield_red"),
+							PlayMode.LOOP);
+					scoreText = new TextHandler(scoreText.text, TileType.TILE_RED);
+					break;
+				case TILE_BLUE:
+					borderAnimation = new Animation<TextureRegion>(0.1f, Game.atlas.findRegions("blue/queuefield_blue"),
+							PlayMode.LOOP);
+					scoreText = new TextHandler(scoreText.text, TileType.TILE_BLUE);
+					break;
+			}
+			player.isNormal = false;
 		}
 	}
 
@@ -115,10 +140,10 @@ public class Queuefield {
 		return parallaxWeight;
 	}
 
-	public void changeScore(int score){
+	public void changeScore(int score) {
 		scoreText.setText(Integer.toString(score));
 	}
-	
+
 	public void changeTetromino(Tetromino tetromino) {
 		if (this.tetromino != tetromino) {
 			this.tetromino = tetromino;
@@ -143,33 +168,19 @@ public class Queuefield {
 		int parallaxOffsetY = (int) ((Game.camera.position.y - (Gdx.graphics.getHeight() / 2)) * parallaxWeight);
 		TextureRegion borderRegion = borderAnimation.getKeyFrame(Game.elapsedTime);
 		borderRegion.flip(false, true);
-		batch.draw(borderRegion, 
-				parallaxOffsetX + (x - (borderRegion.getRegionWidth())), 
-				parallaxOffsetY + (y - (borderRegion.getRegionHeight() / 2)) + 25 - (yOffset * 2), 
-				0, 
-				0, 
-				borderRegion.getRegionWidth(),
-				borderRegion.getRegionHeight(), 
-				2, 
-				2, 
-				0);
+		batch.draw(borderRegion, parallaxOffsetX + (x - (borderRegion.getRegionWidth())),
+				parallaxOffsetY + (y - (borderRegion.getRegionHeight() / 2)) + 25 - (yOffset * 2), 0, 0,
+				borderRegion.getRegionWidth(), borderRegion.getRegionHeight(), 2, 2, 0);
 		borderRegion.flip(false, true);
 		int numOfTextures = scoreText.getTexture().size();
 		ArrayList<Texture> scoreTextures = scoreText.getTexture();
-		for(int i = 0; i < numOfTextures; i++){
+		for (int i = 0; i < numOfTextures; i++) {
 			TextureRegion scoreRegion = new TextureRegion(scoreTextures.get(i));
 			int x1 = parallaxOffsetX + (x - (scoreRegion.getRegionWidth())) + (i * 12 + (i * 2));
 			scoreRegion.flip(false, true);
-			batch.draw(scoreRegion, 
-					x1 - 28, 
-					parallaxOffsetY + (y - (scoreRegion.getRegionHeight() / 2)) + 118 - (yOffset * 2), 
-					0, 
-					0, 
-					scoreRegion.getRegionWidth(),
-					scoreRegion.getRegionHeight(), 
-					2, 
-					2, 
-					0);
+			batch.draw(scoreRegion, x1 - 28,
+					parallaxOffsetY + (y - (scoreRegion.getRegionHeight() / 2)) + 118 - (yOffset * 2), 0, 0,
+					scoreRegion.getRegionWidth(), scoreRegion.getRegionHeight(), 2, 2, 0);
 			scoreRegion.flip(false, true);
 		}
 	}
